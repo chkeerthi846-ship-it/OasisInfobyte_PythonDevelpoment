@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+
+            /* Gradient background */
+            background: linear-gradient(135deg, #667eea, #764ba2, #ff758c);
+            background-size: 300% 300%;
+            animation: gradientMove 10s ease infinite;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Math symbols background */
+        .math-bg span {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 40px;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+            }
+        }
+
+        .math-bg span:nth-child(1) { left: 10%; animation-duration: 12s; font-size: 50px; }
+        .math-bg span:nth-child(2) { left: 25%; animation-duration: 18s; }
+        .math-bg span:nth-child(3) { left: 40%; animation-duration: 14s; font-size: 60px; }
+        .math-bg span:nth-child(4) { left: 55%; animation-duration: 20s; }
+        .math-bg span:nth-child(5) { left: 70%; animation-duration: 16s; font-size: 55px; }
+        .math-bg span:nth-child(6) { left: 85%; animation-duration: 22s; }
+
+        /* BMI Card */
+        .box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 16px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            z-index: 1;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Floating Math Symbols -->
+<div class="math-bg">
+    <span>π</span>
+    <span>∑</span>
+    <span>√</span>
+    <span>x²</span>
+    <span>%</span>
+    <span>÷</span>
+</div>
+
+<!-- BMI Calculator Card -->
+<div class="box">
+    <h2>📐 BMI Calculator</h2>
+
+    <form method="post">
+        <input type="text" name="weight" placeholder="Weight (kg)" required>
+        <input type="text" name="height" placeholder="Height (meters)" required>
+        <button type="submit">Calculate BMI</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if bmi %}
+        <h3>Your BMI: {{ bmi }}</h3>
+        <p>Category: <strong>{{ category }}</strong></p>
+    {% endif %}
+</div>
+
+</body>
+</html>
