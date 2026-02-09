@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #8fd3f4, #fbc2eb);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            width: 340px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        label {
+            display: block;
+            margin: 6px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #87CEEB, #FFB6C1);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f2f2f2;
+            border-radius: 6px;
+            word-break: break-all;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Password Generator</h2>
+
+    <form method="POST">
+        <label>Password Length</label>
+        <input type="number" name="length" min="4" max="50" required>
+
+        <label><input type="checkbox" name="letters" checked> Letters</label>
+        <label><input type="checkbox" name="numbers" checked> Numbers</label>
+        <label><input type="checkbox" name="symbols"> Symbols</label>
+
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if password %}
+        <div class="output">{{ password }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
